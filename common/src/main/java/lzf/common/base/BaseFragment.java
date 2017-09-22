@@ -10,9 +10,8 @@ import android.view.ViewGroup;
 /**
  * Created by Administrator on 2017/9/15 0015.
  */
-public abstract class BaseFragment extends Fragment implements BaseView{
+public abstract class BaseFragment extends Fragment implements BaseFragmentView{
     private boolean isFirstComing=false;
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return LayoutInflater.from(getContext()).inflate(getLayoutId(),container,false);
@@ -21,6 +20,7 @@ public abstract class BaseFragment extends Fragment implements BaseView{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initVariable(view);
         initListener();
     }
 

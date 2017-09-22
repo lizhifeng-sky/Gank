@@ -11,8 +11,6 @@ public interface BaseView {
 
     int getLayoutId();
 
-    void initVariable();
-
     void initListener();
 
     void loadData();

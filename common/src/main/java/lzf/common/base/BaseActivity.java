@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by Administrator on 2017/9/15 0015.
  */
-public abstract class BaseActivity extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity extends AppCompatActivity implements BaseActivityView {
     //是否是第一次进入 防止onResume重新请求数据
     private boolean isFirstComing = false;
 
@@ -33,6 +33,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     }
 
     @Override
+    public void loadData() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }
@@ -54,5 +59,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
          * 低内存 只保留栈顶activity
          * */
         ActivityManager.getAppManager().onLowMemory();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
