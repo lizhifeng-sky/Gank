@@ -52,11 +52,17 @@ public class GankFragment extends BaseFragment {
 //            }
 //        });
         RetrofitProxy
-                .getData(apiService.doLogin("15824857592","888888"))
+                .getData(apiService.doLogin("15824857592","123456"))
                 .subscribe(new CustomSubscriber<UserBean>() {
                     @Override
                     public void onSuccess(UserBean userBean) {
                         Log.e("lzf_success",userBean.toString());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        Log.e("lzf_onError",e.getMessage());
                     }
                 });
     }
