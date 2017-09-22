@@ -28,8 +28,10 @@ public interface APIService {
     @GET("springmvc_users/user/{username}")
     Observable<BaseRequestMode<UserBean>> getUser(@Path("username") String username);
 
-    @GET("user/login")
-    Observable<BaseRequestMode<UserBean>> doLogin(@Query("email") String email, @Query("password") String pwd);
+    @FormUrlEncoded
+    @POST("user/loginByMobile")
+    Observable<BaseRequestMode<UserBean>> doLogin(@Field("mobile") String email,
+                                                  @Field("password") String pwd);
 
     //请求静态url地址
     //无参数
