@@ -1,14 +1,17 @@
 package lzf.common.base;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import java.util.Stack;
 
 public class ActivityManager {
-    public  static FragmentActivity context = null;
+    public static FragmentActivity context = null;
     private static Stack<FragmentActivity> activityStack;
     private static ActivityManager instance;
+
     private ActivityManager() {
     }
 
@@ -18,13 +21,14 @@ public class ActivityManager {
     public static ActivityManager getAppManager() {
         if (instance == null) {
             synchronized (ActivityManager.class) {
-                if (instance==null) {
+                if (instance == null) {
                     instance = new ActivityManager();
                 }
             }
         }
         return instance;
     }
+
     /**
      * 添加Activity到堆栈
      */
@@ -39,7 +43,7 @@ public class ActivityManager {
 
     /**
      * 获取当前Activity（堆栈中最后一个压入的）
-    */
+     */
     public FragmentActivity getCurrentActivity() {
         return activityStack.lastElement();
     }
@@ -64,13 +68,15 @@ public class ActivityManager {
         }
     }
 
-    public void getActivity(){
-        for (int i = 0; i <activityStack.size() ; i++) {
-            if (!activityStack.get(i).isDestroyed()){
-                Log.e("lzf_activity all",activityStack.get(i).toString());
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public void getActivity() {
+        for (int i = 0; i < activityStack.size(); i++) {
+            if (!activityStack.get(i).isDestroyed()) {
+                Log.e("lzf_activity all", activityStack.get(i).toString());
             }
         }
     }
+
     /**
      * 结束指定类名的Activity
      */
@@ -94,24 +100,21 @@ public class ActivityManager {
         }
         activityStack.clear();
         System.exit(1);
-//        //杀死该应用进程
-//        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
-    public void reLoad (){
+    public void reLoad() {
         for (int i = 0, size = activityStack.size(); i < size; i++) {
             if (null != activityStack.get(i)) {
                 activityStack.get(i).finish();
             }
         }
         activityStack.clear();
-//        //杀死该应用进程
-//        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
-    public void onLowMemory(){
-        for (int i = 0; i <activityStack.size(); i++) {
-            if (activityStack.get(i)!=null&&activityStack.get(i)!= getCurrentActivity()){
+    public void onLowMemory() {
+        FragmentActivity currentActivity=getCurrentActivity();
+        for (int i = 0; i < activityStack.size(); i++) {
+            if (activityStack.get(i) != null && activityStack.get(i) != currentActivity) {
                 activityStack.get(i).finish();
                 activityStack.remove(i);
             }
