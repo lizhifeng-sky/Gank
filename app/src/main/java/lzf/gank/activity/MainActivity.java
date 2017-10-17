@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 import lzf.common.base.BaseActivity;
 import lzf.gank.R;
 import lzf.gank.adapter.MainActivityViewPagerAdapter;
-import lzf.gank.fragment.main.GankFragment;
+import lzf.gank.fragment.main.NewsFragment;
 import lzf.gank.fragment.main.MusicFragment;
 import lzf.gank.fragment.main.ReadFragment;
 import lzf.gank.fragment.main.VideoFragment;
@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity {
     public void initVariable() {
         ButterKnife.bind(this);
         List<Fragment> fragmentList = new ArrayList<>();
-        GankFragment gankFragment = new GankFragment();
+        NewsFragment gankFragment = new NewsFragment();
         ReadFragment readFragment = new ReadFragment();
         VideoFragment videoFragment = new VideoFragment();
         MusicFragment musicFragment = new MusicFragment();

@@ -3,6 +3,7 @@ package lzf.common.network;
 import java.util.List;
 import java.util.Map;
 
+import lzf.common.network.bean.AliNewsBean;
 import lzf.common.network.bean.BaseRequestMode;
 import lzf.common.network.bean.CityBean;
 import lzf.common.network.bean.ConfigBean;
@@ -22,6 +23,7 @@ import rx.Observable;
  * Created by Administrator on 2017/8/10 0010.
  */
 public interface APIService {
+
     /*
     * http://base_url/springmvc_users/user/zhy
     * */
