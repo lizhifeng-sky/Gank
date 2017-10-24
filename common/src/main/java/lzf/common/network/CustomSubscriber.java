@@ -42,6 +42,7 @@ public abstract class CustomSubscriber<T> extends Subscriber<BaseRequestMode<T>>
 
     @Override
     public void onCompleted() {
+        unsubscribe();
         if (baseView != null) {
             baseView.stopLoading();
         }
