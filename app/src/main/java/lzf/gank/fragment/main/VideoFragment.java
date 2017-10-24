@@ -1,7 +1,5 @@
 package lzf.gank.fragment.main;
 
-import android.view.View;
-
 import lzf.common.base.BaseFragment;
 import lzf.gank.R;
 
@@ -15,7 +13,7 @@ public class VideoFragment extends BaseFragment{
     }
 
     @Override
-    public void initVariable(View view) {
+    public void initVariable() {
 
     }
 
@@ -24,8 +22,4 @@ public class VideoFragment extends BaseFragment{
 
     }
 
-    @Override
-    public void loadData() {
-
-    }
 }

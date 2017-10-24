@@ -1,12 +1,14 @@
 package lzf.common.network;
 
 
-import lzf.common.base.BaseView;
-import lzf.common.network.bean.BaseRequestMode;
+import lzf.common.bean.BaseRequestMode;
+import lzf.common.mvp.BaseView;
 import rx.Subscriber;
 
 /**
- * Created by Administrator on 2017/8/10 0010.
+ *
+ * @author Administrator
+ * @date 2017/8/10 0010
  */
 public abstract class CustomSubscriber<T> extends Subscriber<BaseRequestMode<T>> {
 
@@ -34,21 +36,21 @@ public abstract class CustomSubscriber<T> extends Subscriber<BaseRequestMode<T>>
     public void onStart() {
         super.onStart();
         if (baseView != null) {
-            baseView.showLoading();
+            baseView.startLoading();
         }
     }
 
     @Override
     public void onCompleted() {
         if (baseView != null) {
-            baseView.hideLoading();
+            baseView.stopLoading();
         }
     }
 
     @Override
     public void onError(Throwable e) {
         if (baseView != null) {
-            baseView.hideLoading();
+            baseView.stopLoading();
             baseView.onError(e);
         }
     }

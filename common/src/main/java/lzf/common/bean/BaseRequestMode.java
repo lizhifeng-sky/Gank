@@ -1,19 +1,21 @@
-package lzf.common.network.bean;
+package lzf.common.bean;
 
 /**
- * Created by Administrator on 2017/5/17 0017.
+ *
+ * @author Administrator
+ * @date 2017/5/17 0017
  */
 public class BaseRequestMode<T> {
-    public int error;
+    public int code;
     public String msg;
     public T data;
 
     public int getError() {
-        return error;
+        return code;
     }
 
     public void setError(int error) {
-        this.error = error;
+        this.code = error;
     }
 
     public String getMsg() {

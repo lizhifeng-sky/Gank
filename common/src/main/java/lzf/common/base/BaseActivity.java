@@ -3,17 +3,24 @@ package lzf.common.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import lzf.common.mvp.BaseView;
+
+
 /**
- * Created by Administrator on 2017/9/15 0015.
+ * @author Administrator
+ * @date 2017/9/15 0015
  */
-public abstract class BaseActivity extends AppCompatActivity implements BaseActivityView {
-    //是否是第一次进入 防止onResume重新请求数据
-    private boolean isFirstComing = false;
+public abstract class BaseActivity extends AppCompatActivity implements BaseUIFlow ,BaseView{
+    /**
+     * activityCount 记录前台activity数
+     */
+    private static int activityCount = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        ActivityManager.getAppManager().addActivity(this);
         initVariable();
         initListener();
     }
@@ -24,21 +31,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseActi
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (!isFirstComing) {
-            isFirstComing = false;
-            loadData();
-        }
-    }
-
-    @Override
-    public void loadData() {
+    public void initListener() {
 
     }
 
     @Override
-    public void showLoading() {
+    public void startLoading() {
 
     }
 
@@ -48,15 +46,40 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseActi
     }
 
     @Override
-    public void hideLoading() {
+    public void stopLoading() {
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        activityCount++;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        activityCount--;
+        if (activityCount==0){
+            //app进入后台
+            ActivityManager.getAppManager().onLowMemory();
+        }
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        /**
-         * 低内存 只保留栈顶activity
+        /*
+         * 低内存 只保留栈顶activity 此时进行内存回收 是最后的时机了
+         * */
+        ActivityManager.getAppManager().onLowMemory();
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        /*
+         * 低内存 只保留栈顶activity 此时进行内存回收是不错的时机
          * */
         ActivityManager.getAppManager().onLowMemory();
     }
@@ -64,5 +87,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseActi
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ActivityManager.getAppManager().finishActivity(this);
     }
 }

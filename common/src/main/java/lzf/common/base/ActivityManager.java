@@ -7,8 +7,10 @@ import android.util.Log;
 
 import java.util.Stack;
 
-public class ActivityManager {
-    public static FragmentActivity context = null;
+/**
+ * @author Administrator
+ */
+class ActivityManager {
     private static Stack<FragmentActivity> activityStack;
     private static ActivityManager instance;
 
@@ -18,7 +20,7 @@ public class ActivityManager {
     /**
      * 单一实例
      */
-    public static ActivityManager getAppManager() {
+    static ActivityManager getAppManager() {
         if (instance == null) {
             synchronized (ActivityManager.class) {
                 if (instance == null) {
@@ -32,7 +34,7 @@ public class ActivityManager {
     /**
      * 添加Activity到堆栈
      */
-    public void addActivity(FragmentActivity activity) {
+    void addActivity(FragmentActivity activity) {
         if (activityStack == null) {
             activityStack = new Stack<>();
         }
@@ -44,7 +46,7 @@ public class ActivityManager {
     /**
      * 获取当前Activity（堆栈中最后一个压入的）
      */
-    public FragmentActivity getCurrentActivity() {
+    private FragmentActivity getCurrentActivity() {
         return activityStack.lastElement();
     }
 
@@ -61,7 +63,7 @@ public class ActivityManager {
     /**
      * 结束指定的Activity
      */
-    public void finishActivity(FragmentActivity activity) {
+    void finishActivity(FragmentActivity activity) {
         if (activity != null) {
             activity.finish();
             activityStack.remove(activity);
@@ -111,8 +113,11 @@ public class ActivityManager {
         activityStack.clear();
     }
 
-    public void onLowMemory() {
-        FragmentActivity currentActivity=getCurrentActivity();
+    /**
+     * 注意这种方式 程序要符合 不保留模式 的要求
+     */
+    void onLowMemory() {
+        FragmentActivity currentActivity = getCurrentActivity();
         for (int i = 0; i < activityStack.size(); i++) {
             if (activityStack.get(i) != null && activityStack.get(i) != currentActivity) {
                 activityStack.get(i).finish();

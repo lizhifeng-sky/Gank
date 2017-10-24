@@ -1,6 +1,6 @@
 package lzf.common.network;
 
-import lzf.common.network.bean.BaseRequestMode;
+import lzf.common.bean.BaseRequestMode;
 import rx.Observable;
 import rx.functions.Func1;
 

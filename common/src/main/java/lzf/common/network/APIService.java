@@ -1,14 +1,14 @@
 package lzf.common.network;
 
+
 import java.util.List;
 import java.util.Map;
 
-import lzf.common.network.bean.AliNewsBean;
-import lzf.common.network.bean.BaseRequestMode;
-import lzf.common.network.bean.CityBean;
-import lzf.common.network.bean.ConfigBean;
-import lzf.common.network.bean.GuideBean;
-import lzf.common.network.bean.UserBean;
+import lzf.common.bean.BaseRequestMode;
+import lzf.common.bean.CityBean;
+import lzf.common.bean.ConfigBean;
+import lzf.common.bean.GuideBean;
+import lzf.common.bean.UserBean;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;

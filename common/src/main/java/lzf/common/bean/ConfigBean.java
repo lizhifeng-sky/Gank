@@ -1,4 +1,4 @@
-package lzf.common.network.bean;
+package lzf.common.bean;
 
 /**
  * Created by Administrator on 2017/6/28 0028.

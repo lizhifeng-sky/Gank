@@ -6,7 +6,7 @@ import android.os.Environment;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import lzf.common.network.bean.BaseRequestMode;
+import lzf.common.bean.BaseRequestMode;
 import lzf.common.network.interceptor.LogInterceptor;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;

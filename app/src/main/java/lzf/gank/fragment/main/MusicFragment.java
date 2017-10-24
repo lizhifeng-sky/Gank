@@ -1,7 +1,5 @@
 package lzf.gank.fragment.main;
 
-import android.view.View;
-
 import lzf.common.base.BaseFragment;
 import lzf.gank.R;
 
@@ -15,17 +13,14 @@ public class MusicFragment extends BaseFragment{
     }
 
     @Override
-    public void initVariable(View view) {
+    public void initVariable() {
 
     }
+
 
     @Override
     public void initListener() {
 
     }
 
-    @Override
-    public void loadData() {
-
-    }
 }
