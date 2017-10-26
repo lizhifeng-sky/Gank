@@ -1,5 +1,6 @@
 package lzf.gank.fragment.main;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -9,17 +10,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lzf.common.base.BaseFragment;
 import lzf.common.bean.UserBean;
-import lzf.common.mvp.BasePresenter;
 import lzf.gank.R;
+import lzf.gank.activity.TestActivity;
 import lzf.gank.presenter.fragment.NewsPresenter;
 import lzf.gank.view.fragment.NewsLoginView;
 
 /**
- *
  * @author Administrator
  * @date 2017/9/15 0015
  */
-public class NewsFragment extends BaseFragment implements NewsLoginView{
+public class NewsFragment extends BaseFragment implements NewsLoginView {
     @BindView(R.id.text)
     TextView textView;
     @BindView(R.id.button)
@@ -27,6 +27,7 @@ public class NewsFragment extends BaseFragment implements NewsLoginView{
     @BindView(R.id.parent)
     RelativeLayout relativeLayout;
     private NewsPresenter newsPresenter;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_gank;
@@ -34,8 +35,8 @@ public class NewsFragment extends BaseFragment implements NewsLoginView{
 
     @Override
     public void initVariable() {
-        ButterKnife.bind(this,getFragmentContentView());
-        newsPresenter=new NewsPresenter(this);
+        ButterKnife.bind(this, getFragmentContentView());
+        newsPresenter = new NewsPresenter(this);
         newsPresenter.attachView(this);
     }
 
@@ -44,14 +45,20 @@ public class NewsFragment extends BaseFragment implements NewsLoginView{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login("15824857592","888888");
+                login("15824857592", "888888");
             }
         });
     }
 
+    @OnClick(R.id.text)
+    public void onClick(View view) {
+        Intent intent=new Intent(getContext(), TestActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void login(String name, String password) {
-        newsPresenter.login(name,password);
+        newsPresenter.login(name, password);
     }
 
     @Override

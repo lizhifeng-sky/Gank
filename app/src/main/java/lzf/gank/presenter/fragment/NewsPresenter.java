@@ -2,12 +2,10 @@ package lzf.gank.presenter.fragment;
 
 import android.util.Log;
 
-import lzf.common.base.BaseUIFlow;
 import lzf.common.bean.UserBean;
 import lzf.common.mvp.BasePresenter;
-import lzf.common.mvp.BaseView;
 import lzf.common.network.CustomSubscriber;
-import lzf.gank.model.LoginModel;
+import lzf.gank.model.ModelProvider;
 import lzf.gank.view.fragment.NewsLoginView;
 
 /**
@@ -18,15 +16,13 @@ import lzf.gank.view.fragment.NewsLoginView;
 
 public class NewsPresenter extends BasePresenter<NewsLoginView> {
     private NewsLoginView newsLoginView;
-    private LoginModel loginModel;
     public NewsPresenter(NewsLoginView baseView) {
         this.newsLoginView = baseView;
-        loginModel=new LoginModel();
     }
 
     public void login(String name,String password){
         if (isViewAttached()) {
-            loginModel.doLogin(name,password).subscribe(new CustomSubscriber<UserBean>(newsLoginView) {
+            ModelProvider.getInstance().doLogin(name,password).subscribe(new CustomSubscriber<UserBean>(newsLoginView) {
                 @Override
                 public void onSuccess(UserBean userBean) {
                     newsLoginView.showUserInfo(userBean);

@@ -2,6 +2,7 @@ package lzf.common.base;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import lzf.common.mvp.BaseView;
 
@@ -72,11 +73,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseUIFl
         /*
          * 低内存 只保留栈顶activity 此时进行内存回收 是最后的时机了
          * */
+        Log.e("lzf_lowMemory","onLowMemory");
         ActivityManager.getAppManager().onLowMemory();
     }
 
     @Override
     public void onTrimMemory(int level) {
+        Log.e("lzf_lowMemory","onTrimMemory"+"   "+level);
         super.onTrimMemory(level);
         /*
          * 低内存 只保留栈顶activity 此时进行内存回收是不错的时机
