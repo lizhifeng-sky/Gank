@@ -5,6 +5,7 @@ import android.util.Log;
 import lzf.common.bean.UserBean;
 import lzf.common.mvp.BasePresenter;
 import lzf.common.network.CustomSubscriber;
+import lzf.gank.activity.TestActivity;
 import lzf.gank.model.ModelProvider;
 import lzf.gank.view.activity.TestActivityView;
 
@@ -12,10 +13,10 @@ import lzf.gank.view.activity.TestActivityView;
  * Created by lizhifeng on 2017/10/26 0026.
  */
 
-public class TestActivityPresenter extends BasePresenter<TestActivityView> {
-    private TestActivityView testActivityView;
+public class TestActivityPresenter extends BasePresenter<TestActivity> {
+    private TestActivity testActivityView;
 
-    public TestActivityPresenter(TestActivityView testActivityView) {
+    public TestActivityPresenter(TestActivity testActivityView) {
         this.testActivityView = testActivityView;
     }
 

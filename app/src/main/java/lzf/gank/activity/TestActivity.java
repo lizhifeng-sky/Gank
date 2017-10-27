@@ -11,7 +11,11 @@ import lzf.gank.R;
 import lzf.gank.presenter.activity.TestActivityPresenter;
 import lzf.gank.view.activity.TestActivityView;
 
-public class TestActivity extends BaseActivity implements TestActivityView {
+/**
+ * 不用接口 简单代理 实际和mvp没什么区别 类大幅度减少
+ *
+ * @author Administrator*/
+public class TestActivity extends BaseActivity{
     @BindView(R.id.login)
     TextView login;
     private TestActivityPresenter testActivityPresenter;
@@ -35,12 +39,10 @@ public class TestActivity extends BaseActivity implements TestActivityView {
         login("15824857592","888888");
     }
 
-    @Override
     public void login(String name, String password) {
         testActivityPresenter.login(name,password);
     }
 
-    @Override
     public void showUserInfo(UserBean userBean) {
         login.setText(userBean.toString());
     }

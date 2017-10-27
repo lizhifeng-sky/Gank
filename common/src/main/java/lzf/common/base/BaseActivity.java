@@ -84,7 +84,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseUIFl
         /*
          * 低内存 只保留栈顶activity 此时进行内存回收是不错的时机
          * */
-        ActivityManager.getAppManager().onLowMemory();
+//        ActivityManager.getAppManager().onLowMemory();
     }
 
     @Override
