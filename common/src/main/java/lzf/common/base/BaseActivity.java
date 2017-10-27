@@ -81,6 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseUIFl
     public void onTrimMemory(int level) {
         Log.e("lzf_lowMemory","onTrimMemory"+"   "+level);
         super.onTrimMemory(level);
+
         /*
          * 低内存 只保留栈顶activity 此时进行内存回收是不错的时机
          * */
